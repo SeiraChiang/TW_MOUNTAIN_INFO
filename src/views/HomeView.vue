@@ -6,6 +6,15 @@
 </template>
 
 <script setup lang="ts">
-import MountainInfo from '@/components/MountainInfo.vue'
-import WeatherInfo from '@/components/WeatherInfo.vue'
+import { defineComponent } from 'vue';
+import MountainInfo from '../components/MountainInfo.vue'
+import WeatherInfo from '../components/WeatherInfo.vue'
+
+defineComponent({
+  components: {
+    MountainInfo,
+    WeatherInfo
+  }
+});
+
 </script>
