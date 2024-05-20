@@ -1,27 +1,38 @@
 <template>
-  <h1>{{weather}}</h1>
-  <button @click="fetchWeather" class="large-button">獲取天氣預報</button>
+  <!-- <h1>{{weather}}</h1> -->
+  <DatePicker type="date" placeholder="Select date" style="width: 70%; margin-right: 10px; height: 40px;"/>
+  <Button type="primary" :size="buttonSize" style="width: 20%" @click="fetchWeather">獲取天氣預報</Button>
   <div v-if="weatherViewCondition===1">
-    <div v-for="(value,key,index) in weatherResponse" :key="value.mountain">
+    <div v-for="(value) in weatherResponse" :key="value.mountain">
+      <!-- <div v-for="(value,key,index) in weatherResponse" :key="value.mountain"> -->
       <div v-if="value.mountain === selectedMountain">
-        <h2>{{ value.area }}：{{ value.mountain }}</h2>
-        <h3>
-          index: {{ index }}，
-          key: {{ key }}，
-          日期: {{ value.date }}， 
-          降雨機率: {{ value.chanceOfRainfall }}%， 
-          溫度: {{ value.temperature.min }}°C 至 {{ value.temperature.max }}°C
-        </h3>
+        <div class="title">{{ value.area }}：{{ value.mountain }}</div>
+        <div class="title">日期: {{ value.date }}</div>
+        <div class="content">
+          <!-- index: {{ index }}，
+          key: {{ key }}， -->
+          
+          <font-awesome-icon icon="fa-solid fa-cloud-sun-rain" size="5x"/>
+          <span>降雨機率: {{ value.chanceOfRainfall }}%</span>
+          <font-awesome-icon icon="fa-solid fa-temperature-high" size="5x"/>
+          <span>溫度: {{ value.temperature.min }}°C 至 {{ value.temperature.max }}°C</span>
+          </div>
+        
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const selectedMountain = ref('八仙山')
-const weather = ref(123)
-const weatherViewCondition = ref(0)
+import { ref } from 'vue';
+import { DatePicker, Button } from 'view-ui-plus';
+
+
+const buttonSize = ref('large');
+
+const selectedMountain = ref('八仙山');
+// const weather = ref('天氣資訊');
+const weatherViewCondition = ref(0);
 const weatherResponse = ref({
   key1:{
     date:'20240520',
@@ -49,6 +60,27 @@ const fetchWeather = () => {
 
 
 <style scoped>
+.title {
+  width: 700px;
+  text-align: left;
+  margin: 15px auto;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.content{
+  margin-top: 30px;
+}
+
+.content > span {
+  /* text-align: center; */
+  margin: 10px 20px;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
 .large-button {
   font-size: 20px;  /* 字體大小 */
   padding: 15px 30px;  /* 內邊距 */

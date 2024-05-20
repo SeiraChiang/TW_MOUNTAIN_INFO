@@ -77,7 +77,7 @@ const title = computed(() => {
 .title {
   width: 700px;
   text-align: left;
-  margin: 10px auto;
+  margin: 15px auto;
   font-weight: 900;
   font-size: 18px;
   letter-spacing: 1px;
