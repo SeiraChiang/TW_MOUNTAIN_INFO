@@ -48,12 +48,9 @@ const config = defineConfig(({ mode }) => {
       port: 3001,
       proxy: {
         "/api": {
-          target: "http://127.0.0.1:8080/ACQBAP",
-          rewrite: (path) => path.replace(/^\/api/, ""),
+          target: "https://opendata.cwa.gov.tw/fileapi/v1/opendataapi",
+          rewrite: (path) => path.replace(/^\/apis/, ""),
           changeOrigin: true,
-          cookiePathRewrite: {
-            "/ACQBAP": "/",
-          },
         },
       },
     },

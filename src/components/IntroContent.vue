@@ -38,7 +38,7 @@
     padding: 10px 10px 20px;
     margin: 5px auto;
     color: #515a6e;
-    border-bottom: 2px solid transparent;
+    /* border-bottom: 2px solid transparent; */
   }
   
   .content {
