@@ -9,20 +9,32 @@ export type weatherInfoList = {
 }
 export type weatherInfo = {
   locationName: string
-  weatherElement: {
-    elementName: string
-    time: {
-      startTime: string
-      elementValue: {
-        value: string
-        measures: string
-      }
-    }[]
-  }[]
+  weatherElement: WeatherElement[]
 }
+type WeatherElement = {
+  elementName: string;
+  time: TimeItem[];
+}
+type TimeItem = {
+  startTime: string;
+  endTime: string;
+  elementValue: ElementValue;
+}
+export type ElementValue = {
+    value: string
+    measures: string
+  } | {
+    value: string
+    measures: string
+  }[]
 
 export type weatherDetail = {
   date: string
-  time: string
-  value: string
+  startTime: string
+  endTime: string
+  MaxT: string
+  MinT: string
+  PoP12h: string
+  RH: string
+  Wx: string
 }

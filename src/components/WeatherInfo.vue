@@ -7,22 +7,44 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { Button,Table } from 'view-ui-plus';
 import weatherApi from '../api/weatherApi'
 import type { weatherDetail, weatherInfo, weatherInfoList } from '../type/WeatherType.ts'
 import { useMountainStore } from '../stores/counter.ts'
 
 const column = [
-  { title: '日期', key: 'time' },
-  { title: '時間', key: 'date' },
+  { title: '日期', 
+  key: 'date', 
+  align: 'center' },
   {
-    title: '天氣預報綜合描述',
-    key: 'value'
+    title: '最高溫',
+    key: 'MaxT', 
+    align: 'center'
+  },
+  {
+    title: '最低溫',
+    key: 'MinT', 
+    align: 'center'
+  },
+  {
+    title: '降雨機率',
+    key: 'PoP12h', 
+    align: 'center'
+  },
+  {
+    title: '相對溼度',
+    key: 'RH', 
+    align: 'center'
+  },
+  {
+    title: '天氣狀況',
+    key: 'Wx', 
+    align: 'center'
   }
 ]
 const mountainStore = useMountainStore()
-const weatherDetailList = ref<weatherDetail[]>()
+const weatherDetailList = ref<weatherDetail[]>([])
 const weather = ref<weatherInfo>()
 const res = ref<weatherInfoList>()
 
@@ -31,21 +53,67 @@ const fetchWeather = async () => {
     weather.value = res.value!.cwaopendata.dataset.locations.location.find(
       (item) => item.locationName === mountainStore.selectMountain
     )
-    weatherDetailList.value = weather.value?.weatherElement
-      .find((item) => item.elementName === 'WeatherDescription')
-      ?.time.map((Item) => ({
-        time: Item.startTime.split('T')[0],
-        date: Item.startTime.split('T')[1].split('+')[0],
-        value: Item.elementValue?.value
-      }))
+
+    if (weather.value) {
+      // 初始化 weatherDetailList
+      weatherDetailList.value = weather.value.weatherElement[0]?.time.map((Item) => ({
+        date: '',
+        startTime: '',
+        endTime: '',
+        MaxT: '',
+        MinT: '',
+        PoP12h: '',
+        RH: '',
+        Wx: '',
+      }))?? [];
+
+      weather.value.weatherElement
+      .forEach((element) => {
+        const filterColumns = element.time.filter(item => item.startTime.split('T')[0] === item.endTime.split('T')[0])
+        switch (element.elementName) {
+          case 'MaxT':
+            filterColumns.forEach((Item, index) => {
+              weatherDetailList.value[index].date = Item.startTime.split('T')[0]
+              weatherDetailList.value[index].MaxT = Array.isArray(Item.elementValue) ? Item.elementValue[0].value : Item.elementValue.value
+            });
+            break;
+          case 'MinT':
+            filterColumns.forEach((Item, index) => {
+              weatherDetailList.value[index].MinT = Array.isArray(Item.elementValue) ? Item.elementValue[0].value : Item.elementValue.value
+            });
+            break;
+          case 'PoP12h':
+            filterColumns.forEach((Item, index) => {
+              weatherDetailList.value[index].PoP12h = Array.isArray(Item.elementValue) ? Item.elementValue[0].value : Item.elementValue.value
+              if (weatherDetailList.value[index].PoP12h === null) {
+                weatherDetailList.value[index].PoP12h = "--";
+                }
+            });
+            break;
+          case 'RH':
+            filterColumns.forEach((Item, index) => {
+              weatherDetailList.value[index].RH = Array.isArray(Item.elementValue) ? Item.elementValue[0].value : Item.elementValue.value
+            });
+            break;
+          case 'Wx':
+            filterColumns.forEach((Item, index) => {
+              weatherDetailList.value[index].Wx = Array.isArray(Item.elementValue) ? Item.elementValue[0].value : Item.elementValue.value
+            });
+            break;
+          default:
+            break;
+        }
+    })
+    
   }
   
-  nextTick(() => {
-    const targetDiv = document.querySelector('#app > main > div:nth-child(3) > h1');
-      targetDiv?.scrollIntoView({ behavior: 'smooth' });
-    });
+  
+  // nextTick(() => {
+  //   const targetDiv = document.querySelector('#app > main > div:nth-child(3) > h1');
+  //     targetDiv?.scrollIntoView({ behavior: 'smooth' });
+  //   });
 }
-
+}
 onMounted(async () => {
   res.value = await weatherApi.doGetWeather()
   console.log(res.value)
@@ -68,9 +136,5 @@ onMounted(async () => {
   margin: auto;
 }
 
-#app > main > div:nth-child(3) > div > span{
-  letter-spacing: 1px;
-  line-height: 1.2;
-}
 </style>
 : (arg0: string, arg1: any) => any: { row: { elementValue: { value: any; }; }; }
