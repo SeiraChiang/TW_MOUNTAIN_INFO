@@ -1,8 +1,9 @@
 <template>
   <Button type="primary" style="width: 20%" @click="fetchWeather">獲取天氣預報</Button>
-  <div>
+  <!-- <div class="weather" style="display: none;" ref="weatherSection"> -->
+    <div class="weather" ref="weatherSection">
     <h1 class="title">{{ weather?.locationName }} 天氣資訊</h1>
-    <Table :columns="column" :data="weatherDetailList" ></Table>
+    <Table :columns="column" :data="weatherDetailList" no-data-text="暫無數據"></Table>
   </div>
 </template>
 
@@ -50,13 +51,17 @@ const res = ref<weatherInfoList>()
 
 const fetchWeather = async () => {
   if (mountainStore.selectMountain !== '') {
+    if (weatherSection.value) {
+        weatherSection.value.style.display = 'block';
+      }
     weather.value = res.value!.cwaopendata.dataset.locations.location.find(
       (item) => item.locationName === mountainStore.selectMountain
     )
 
     if (weather.value) {
-      // 初始化 weatherDetailList
-      weatherDetailList.value = weather.value.weatherElement[0]?.time.map((Item) => ({
+      // 篩選日期&初始化 weatherDetailList
+      weatherDetailList.value = weather.value.weatherElement[0]?.time.filter(item => item.startTime.split('T')[0] === item.endTime.split('T')[0])
+      .map((Item) => ({
         date: '',
         startTime: '',
         endTime: '',
@@ -104,17 +109,20 @@ const fetchWeather = async () => {
             break;
         }
     })
-    
   }
-  
-  
   // nextTick(() => {
   //   const targetDiv = document.querySelector('#app > main > div:nth-child(3) > h1');
   //     targetDiv?.scrollIntoView({ behavior: 'smooth' });
   //   });
+}else{
+  window.alert("請選擇路線")
 }
 }
+const weatherSection = ref<HTMLDivElement | null>(null);
 onMounted(async () => {
+  if (weatherSection.value) {
+        weatherSection.value.style.display = 'none';
+      }
   res.value = await weatherApi.doGetWeather()
   console.log(res.value)
 })
@@ -131,7 +139,7 @@ onMounted(async () => {
   margin-top: 30px;
 }
 
-#app > main > div:nth-child(3) > div{
+.weather {
   width: 700px;
   margin: auto;
 }

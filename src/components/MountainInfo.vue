@@ -51,12 +51,12 @@ const areaList = [
 
 const mountainList = [
   { value: '大屯山', label: '大屯山', area: 'north' },
-  { value: '太平山', label: '太平山', area: 'north' },
+  { value: '七星山', label: '七星山', area: 'north' },
   { value: '拉拉山', label: '拉拉山', area: 'north' },
-  { value: '八仙山', label: '八仙山', area: 'middle' },
-  { value: '杉林溪', label: '杉林溪', area: 'middle' },
+  { value: '南湖大山', label: '南湖大山', area: 'middle' },
+  { value: '合歡山', label: '合歡山', area: 'middle' },
   { value: '玉山', label: '玉山', area: 'south' },
-  { value: '阿里山', label: '阿里山', area: 'south' }
+  { value: '關山', label: '關山', area: 'south' }
 ]
 
 const mountainDescriptions = [
@@ -67,10 +67,10 @@ const mountainDescriptions = [
     url: 'https://www.atunas.com.tw/upload/2021_06_07/2_20210607170026ljr9cui7D1.jpeg'
   },
   {
-    value: '太平山',
+    value: '七星山',
     description:
-      '太平山國家森林遊樂區位於宜蘭縣大同鄉，素有『人間仙境』的美稱，面積廣達12,631公頃、標高1950公尺，隸屬於羅東林區管理處管理，全區包括有南湖大山山系、三星山山系、大霸尖山支脈，園區內以保留的原始林木包括紅檜、扁柏、鐵杉等聞名，曾與阿里山、八仙山並列為台灣三大林場。',
-    url: 'https://tps.forest.gov.tw/TPSWeb/wSite/public/Data/f1479952174137.jpg'
+      '七星山，高約1120公尺，位於陽明山國家公園內，係屬大屯火山群，為臺北市最高的山岳。七星山頂端原為火山噴口，後因長久侵蝕成七個小山頭而得名。其山頂視野遼闊，能將整個大臺北地區一覽無遺，沿途自然景觀豐富，隨四季呈現不同變化，為最佳的自然解說教室，適合親子共遊的好地方。',
+    url: 'https://mochislife.com/wp-content/uploads/20200427152544_60.jpg'
   },
   {
     value: '拉拉山',
@@ -79,16 +79,16 @@ const mountainDescriptions = [
     url: 'https://i0.wp.com/pukemago.com/wp-content/uploads/Compress_20230308_162059_9420-scaled.jpg?fit=2560%2C1440&ssl=1'
   },
   {
-    value: '八仙山',
+    value: '南湖大山',
     description:
-      '八仙山森林遊樂區位於台中市和平區，主峰海拔2366公尺，約為八千台尺，因而得名「八仙」，區內森林蒼翠，氣候清爽宜人，十文溪與佳保溪匯流其間，溪水源自深山森林，水質清澈，溪中大小岩石遍佈，處處潺流。自然生態資源豐富且昔日為台灣三大林場之一，擁有濃郁的林業人文風情。',
-    url: 'https://recreation.forest.gov.tw/Files/Forest/RA/photo/album/0300002/03_%E5%85%AB%E4%BB%99%E5%B1%B1.JPG'
+      '南湖大山，高達3742公尺。位處臺中和平鄉、花蓮秀林鄉間、中央山脈北段，為臺灣第四高峰，並與雪山、秀姑巒山、玉山、北大武山合稱「五岳」。其山勢雄偉，基盤廣大，氣度恢宏，素有「帝王之山」、「王者之山」之稱，而主山的山體，更別號「帝王座」。沿途自然景觀豐富，加以山頂視野廣闊，周遭群山勝景盡收眼底，為許多山友們心目中不可不爬的好山。',
+    url: 'https://www.sunriver.com.tw/blog/wp-content/uploads/C-a-034-32.jpg'
   },
   {
-    value: '杉林溪',
+    value: '合歡山',
     description:
-      '杉林溪距溪頭17公里，佔地40公頃的杉林溪森林生態渡假園區位於溪頭往阿里山健行熱線之中途站，海拔1,600公尺，一年四季花期不斷；春櫻吐蕊、夏石楠花開、秋蘭飄香、冬楓相映。自溪頭孟宗山莊後的溪杉觀光道路進入，著名景點依序為石井磯、青龍瀑布、聚英村、花卉中心、松瀧岩與天地眼。',
-    url: 'https://travel.nantou.gov.tw/wp-content/uploads/google_map_photos/44916/1.jpg?1634689071'
+      '合歡山，又名合歡主峰，高達3416公尺，為臺灣百岳之一。位處花蓮縣與南投縣的交界，為大甲溪、濁水溪與立霧溪的分水嶺。因擁有高山景致與冷溫帶氣候、交通便利的條件，為熱門觀景、避暑、賞雪景點，加上是合歡、奇萊等群峰門戶，所以也是攀登合歡東峰、合歡尖山、石門山與中央山脈北三段的登山口。',
+    url: 'https://th.bing.com/th/id/R.a90a5e423e8146d2c174483ac0eddb5c?rik=pckGSSfa6%2byCeA&pid=ImgRaw&r=0'
   },
   {
     value: '玉山',
@@ -97,10 +97,10 @@ const mountainDescriptions = [
     url: 'https://www.ysnp.gov.tw/FileDownload/ContentManagement/20200917185611616637714.jpg'
   },
   {
-    value: '阿里山',
+    value: '關山',
     description:
-      '阿里山森林遊樂區海拔高度2,216公尺，四周高山環列，氣候涼爽，以日出、雲海、晚霞、森林、登山森林鐵路並列為阿里山五奇，聞名國際。 而鄒族原住民人文資源更增其觀光魅力。 阿里山地區橫跨臺灣森林垂直分佈之熱、暖、溫三帶，蘊藏豐富的森林資源，尤以檜木名聞國際，漫步林間隨處可見。',
-    url: 'https://s.yimg.com/os/creatr-uploaded-images/2019-10/212975e0-eabb-11e9-b7fb-1b4329bd9a7f'
+      '關山，高3668公尺，有一編號1674的二等三角點基石。位於高雄市桃源區、臺東縣海端鄉間，為玉山國家公園南側範圍的界山，也為中央山脈大水窟以南最高的山峰。關山山頂呈南北走向，周圍支稜較低，加上山勢高立聳然直入天際，因而有「南台首岳」之稱，也名列臺灣百岳中的「十峻」之一。',
+    url: 'https://i0.wp.com/www.sunriver.com.tw/blog/wp-content/uploads/D-g-096-20.jpg'
   }
 ]
 
@@ -122,6 +122,10 @@ watch(selectedArea, (newValue, oldValue) => {
 
 watch(selectedMountain, () => {
   mountainStore.selectMountain = selectedMountain.value;
+  const weatherSection = document.querySelector('.weather');
+  if (weatherSection) {
+    weatherSection.style.display = 'none';
+    }
 })
 
 // 標題更新
