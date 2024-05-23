@@ -61,7 +61,7 @@ const fetchWeather = async () => {
     if (weather.value) {
       // 篩選日期&初始化 weatherDetailList
       weatherDetailList.value = weather.value.weatherElement[0]?.time.filter(item => item.startTime.split('T')[0] === item.endTime.split('T')[0])
-      .map((Item) => ({
+      .map(() => ({
         date: '',
         startTime: '',
         endTime: '',
@@ -132,7 +132,7 @@ onMounted(async () => {
 .title {
   width: 700px;
   text-align: left;
-  margin: 15px auto;
+  margin: 5px auto;
   font-weight: 900;
   font-size: 18px;
   letter-spacing: 1px;

@@ -122,7 +122,7 @@ watch(selectedArea, (newValue, oldValue) => {
 
 watch(selectedMountain, () => {
   mountainStore.selectMountain = selectedMountain.value;
-  const weatherSection = document.querySelector('.weather');
+  const weatherSection = document.querySelector('.weather') as HTMLDivElement | null;
   if (weatherSection) {
     weatherSection.style.display = 'none';
     }
@@ -141,7 +141,7 @@ const title = computed(() => {
 .title {
   width: 700px;
   text-align: left;
-  margin: 15px auto;
+  margin: 10px auto;
   font-weight: 900;
   font-size: 18px;
   letter-spacing: 1px;

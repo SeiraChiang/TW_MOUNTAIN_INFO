@@ -35,7 +35,7 @@
     width: 700px;
     display: flex;
     text-align: left;
-    padding: 10px 10px 20px;
+    padding: 10px;
     margin: 5px auto;
     color: #515a6e;
     /* border-bottom: 2px solid transparent; */
@@ -50,7 +50,7 @@
   }
   
   .pic {
-    max-width: 100%;
+    max-width: 90%;
     float: right;
     object-fit: cover;
   }
